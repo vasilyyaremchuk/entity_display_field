@@ -1,0 +1,9 @@
+# @see Configuration schema/metadata at https://drupal.org/node/1905070
+#
+field.entity_display_field_display.value:
+  type: mapping
+  label: 'Default value'
+  mapping:
+    value:
+      type: string
+      label: 'Value'

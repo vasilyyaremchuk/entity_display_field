@@ -1,0 +1,30 @@
+<?php
+/**
+ * @file
+ * Provides a field for specifying display mode.
+ *
+ * @license GPL v2 http://www.fsf.org/licensing/licenses/gpl.html
+ * @author Chris Skene chris at previousnext dot com dot au (Drupal 7 version https://www.drupal.org/project/entity_display_field) and Vasily Yaremchuk https://www.drupal.org/u/yaremchuk (Drupla 8 version)
+ */
+
+/**
+ * Implements hook_entity_view_mode_alter().
+ *
+ * Over ride the display mode if the display field is populated.
+ */
+function entity_display_field_entity_view_mode_alter(&$view_mode, Drupal\Core\Entity\EntityInterface $entity, $context) {
+
+  $display_fields = \Drupal::entityManager()->getFieldMapByFieldType('entity_display_field_display');
+
+  // If display fields are present, swap the view mode.
+  if (!empty($display_fields)) {
+    foreach ($display_fields as $field_wrapper) {
+      foreach (array_keys($field_wrapper) as $field_name) {
+        if (!empty($entity->$field_name->value)) {
+          $view_mode = $entity->$field_name->value;
+          break;
+        }
+      }
+    }
+  }
+}
