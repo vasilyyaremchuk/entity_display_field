@@ -17,8 +17,8 @@ use Drupal\Core\Form\FormStateInterface;
  * @FieldWidget(
  *   id = "entity_display_field_select",
  *   module = "entity_display_field",
- *   label = @Translation("Entity Display Field Select"),
- *   field_types = {"entity_display_field_select"}
+ *   label = @Translation("Entity Display Select"),
+ *   field_types = {"entity_display_field_display"}
  * )
  */
 class EntityDisplayFieldWidget extends WidgetBase {
